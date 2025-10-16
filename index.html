@@ -1,276 +1,827 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DRESTEIN'25 | Mechanical Engineering</title>
-<style>
-/* === BASIC THEME === */
-body {
-  margin: 0;
-  font-family: "Segoe UI", Arial, sans-serif;
-  background-color: #000;
-  color: #FFD700;
-  scroll-behavior: smooth;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drestein'25 | Department of Mechanical Engineering</title>
+    <meta name="description" content="16th National Level Inter Collegiate Technical and Management Fest - Department of Mechanical Engineering">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-/* === NAVBAR === */
-nav {
-  background-color: rgba(0, 0, 0, 0.9);
-  padding: 15px 0;
-  text-align: center;
-  border-bottom: 2px solid #FFD700;
-  position: sticky;
-  top: 0;
-  z-index: 10;
-}
+        :root {
+            --gold: #FFD700;
+            --gold-dark: #B8860B;
+            --gold-light: #FFED4E;
+            --black: #000000;
+            --dark-gray: #0a0a0a;
+            --darker-gray: #1a1a1a;
+        }
 
-nav a {
-  color: #FFD700;
-  text-decoration: none;
-  margin: 0 20px;
-  font-weight: bold;
-  font-size: 18px;
-  transition: 0.3s;
-}
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--black);
+            color: var(--gold);
+            overflow-x: hidden;
+        }
 
-nav a:hover {
-  color: #fff;
-  text-shadow: 0 0 15px #FFD700;
-}
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 3px solid var(--gold);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+        }
 
-/* === HERO SECTION === */
-.hero {
-  height: 100vh;
-  background: 
-    linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-    url("https://i.pinimg.com/originals/0d/22/8c/0d228cf6ea0f76ea79c6b788b5e77cc4.gif") center/cover no-repeat;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--gold);
+            text-shadow: 0 0 30px var(--gold), 0 0 60px var(--gold);
+            letter-spacing: 3px;
+        }
 
-.hero h1 {
-  font-size: 65px;
-  text-shadow: 0 0 30px #FFD700;
-  margin-bottom: 10px;
-}
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
 
-.hero h2 {
-  font-size: 24px;
-  color: #ffeb7a;
-}
+        .nav-links a {
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            position: relative;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
 
-.hero p {
-  margin-top: 10px;
-  font-size: 20px;
-  color: #FFF9C4;
-}
+        .nav-links a:hover {
+            color: var(--gold-light);
+            text-shadow: 0 0 20px var(--gold), 0 0 40px var(--gold);
+        }
 
-.hero button {
-  background-color: #FFD700;
-  color: #000;
-  padding: 12px 28px;
-  border: none;
-  border-radius: 25px;
-  font-weight: bold;
-  margin-top: 25px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-.hero button:hover {
-  background-color: #ffeb7a;
-  transform: scale(1.05);
-}
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background: radial-gradient(circle at center, #1a1a1a 0%, #000000 100%);
+        }
 
-/* === SECTIONS === */
-section {
-  padding: 70px 20px;
-  text-align: center;
-}
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 1000px;
+            height: 1000px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 60%);
+            animation: pulse-subtle 5s ease-in-out infinite;
+        }
 
-h2.section-title {
-  font-size: 36px;
-  color: #FFD700;
-  margin-bottom: 30px;
-  text-shadow: 0 0 15px #FFD700;
-}
+        @keyframes pulse-subtle {
+            0%, 100% {
+                transform: scale(0.9);
+                opacity: 0.2;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 0.3;
+            }
+        }
 
-/* === ABOUT === */
-.about {
-  background-color: #111;
-}
-.about p {
-  max-width: 800px;
-  margin: 0 auto;
-  color: #ffeb7a;
-  font-size: 18px;
-  line-height: 1.7;
-}
+        /* --- NEW: Moving Gear Pattern Background --- */
+        .gear-pattern-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.05; /* Very subtle */
+            background-size: 150px 150px;
+            background-image:
+                linear-gradient(45deg, var(--gold) 10%, transparent 10%, transparent 90%, var(--gold) 90%),
+                linear-gradient(-45deg, var(--gold) 10%, transparent 10%, transparent 90%, var(--gold) 90%),
+                linear-gradient(90deg, var(--gold) 1px, transparent 1px),
+                linear-gradient(0deg, var(--gold) 1px, transparent 1px);
+            animation: gear-move 60s linear infinite;
+        }
 
-/* === EVENTS === */
-.events {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 25px;
-  max-width: 1000px;
-  margin: 0 auto;
-}
+        @keyframes gear-move {
+            from { background-position: 0 0, 0 0, 0 0, 0 0; }
+            to { background-position: 150px 150px, 150px 150px, 150px 150px, 150px 150px; }
+        }
+        /* --- END: Moving Gear Pattern Background --- */
 
-.event-card {
-  background-color: #1a1a1a;
-  border: 2px solid #FFD700;
-  border-radius: 15px;
-  padding: 25px;
-  transition: 0.3s;
-  box-shadow: 0 0 10px #000;
-}
 
-.event-card:hover {
-  background-color: #222;
-  transform: translateY(-10px);
-  box-shadow: 0 0 25px #FFD700;
-}
+        /* --- NEW: Animated Automobile-esque SVG Elements --- */
+        .mech-element {
+            position: absolute;
+            opacity: 0.3;
+            filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.5));
+            animation: floating-glow 8s ease-in-out infinite alternate;
+        }
 
-.event-card h3 {
-  color: #FFD700;
-  margin-bottom: 10px;
-}
+        .mech-element.piston-shaft {
+            width: 50px;
+            height: 200px;
+            background: linear-gradient(to bottom, var(--gold-light), var(--gold-dark));
+            border-radius: 25px;
+            top: 15%;
+            left: 10%;
+            transform: rotate(20deg);
+            animation: piston-shaft-anim 4s ease-in-out infinite alternate;
+        }
+        .mech-element.piston-shaft::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 40px;
+            background: var(--gold);
+            border-radius: 50%;
+            box-shadow: 0 0 20px var(--gold);
+        }
 
-.event-card p {
-  color: #ffeb7a;
-}
+        @keyframes piston-shaft-anim {
+            0% { transform: translateY(0) rotate(20deg); }
+            100% { transform: translateY(30px) rotate(25deg); }
+        }
 
-/* === CONTACT === */
-#contact {
-  background-color: #111;
-}
-form {
-  max-width: 600px;
-  margin: 0 auto;
-  background-color: #000;
-  padding: 30px;
-  border: 2px solid #FFD700;
-  border-radius: 15px;
-  text-align: left;
-}
-label {
-  display: block;
-  margin-top: 10px;
-  color: #FFD700;
-  font-weight: bold;
-}
-input, textarea {
-  width: 100%;
-  padding: 10px;
-  margin-top: 5px;
-  border-radius: 8px;
-  border: 1px solid #FFD700;
-  background-color: #111;
-  color: #FFD700;
-}
-button.submit-btn {
-  width: 100%;
-  background-color: #FFD700;
-  color: #000;
-  padding: 12px;
-  font-weight: bold;
-  border: none;
-  border-radius: 25px;
-  margin-top: 15px;
-  cursor: pointer;
-}
-button.submit-btn:hover {
-  background-color: #ffeb7a;
-}
+        .mech-element.circuit-board {
+            width: 250px;
+            height: 180px;
+            border: 2px solid var(--gold-light);
+            border-radius: 10px;
+            top: 60%;
+            right: 10%;
+            transform: rotate(-15deg);
+            animation-delay: 1.5s;
+            animation: circuit-glow 3s ease-in-out infinite alternate;
+            background: rgba(255,215,0,0.05); /* very light transparent gold */
+        }
+        .mech-element.circuit-board::before {
+            content: '';
+            position: absolute;
+            top: 20%; left: 15%; width: 70%; height: 5px; background: var(--gold-light); box-shadow: 0 0 10px var(--gold-light);
+        }
+        .mech-element.circuit-board::after {
+            content: '';
+            position: absolute;
+            top: 50%; left: 30%; width: 5px; height: 50%; background: var(--gold-light); box-shadow: 0 0 10px var(--gold-light);
+        }
+        @keyframes circuit-glow {
+            0% { opacity: 0.2; transform: scale(1) rotate(-15deg); }
+            100% { opacity: 0.4; transform: scale(1.05) rotate(-15deg); }
+        }
 
-/* === FOOTER === */
-footer {
-  background: 
-    linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)),
-    url("https://i.pinimg.com/originals/7e/a3/2f/7ea32f594e5fcb20f1a7b7c978497d03.gif") center/cover no-repeat;
-  text-align: center;
-  padding: 35px;
-  border-top: 2px solid #FFD700;
-  color: #FFD700;
-}
-footer p {
-  background-color: rgba(0,0,0,0.6);
-  display: inline-block;
-  padding: 10px 20px;
-  border-radius: 10px;
-}
 
-/* === RESPONSIVE === */
-@media (max-width: 600px) {
-  .hero h1 { font-size: 42px; }
-  .hero h2 { font-size: 18px; }
-}
-</style>
+        .mech-element.turbine-blade {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            top: 25%;
+            right: 5%;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); /* Hexagon-like */
+            background: linear-gradient(135deg, var(--gold-light), var(--gold-dark));
+            transform: rotate(0deg);
+            animation: rotate-blade 15s linear infinite, floating-glow 6s ease-in-out infinite alternate;
+            animation-delay: 0.5s;
+        }
+
+        @keyframes rotate-blade {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Generic floating glow for all mech elements */
+        @keyframes floating-glow {
+            0% { transform: translateY(0px) scale(1); filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.5)); }
+            50% { transform: translateY(-10px) scale(1.02); filter: drop-shadow(0 0 25px rgba(255, 215, 0, 0.7)); }
+            100% { transform: translateY(0px) scale(1); filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.5)); }
+        }
+        /* --- END: Animated Automobile-esque SVG Elements --- */
+
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 6rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+            text-shadow: 0 0 40px var(--gold), 0 0 80px var(--gold), 0 0 120px var(--gold);
+            letter-spacing: 10px;
+            animation: glow-intense 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow-intense {
+            from {
+                text-shadow: 0 0 40px var(--gold), 0 0 80px var(--gold);
+            }
+            to {
+                text-shadow: 0 0 60px var(--gold), 0 0 120px var(--gold), 0 0 180px var(--gold);
+            }
+        }
+
+        .hero h2 {
+            font-size: 2.2rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            text-shadow: 0 0 30px var(--gold);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--gold-light);
+            margin-bottom: 2rem;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        .cta-button {
+            padding: 1.2rem 3.5rem;
+            font-size: 1.2rem;
+            background: linear-gradient(45deg, var(--gold), var(--gold-light));
+            color: var(--black);
+            border: 3px solid var(--gold);
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 0 40px var(--gold), 0 10px 40px rgba(255, 215, 0, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 0 60px var(--gold), 0 15px 60px rgba(255, 215, 0, 0.8);
+            background: linear-gradient(45deg, var(--gold-light), var(--gold));
+        }
+
+        section {
+            padding: 5rem 5%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: var(--black);
+        }
+
+        section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.08;
+            z-index: 0;
+            pointer-events: none;
+            background: repeating-linear-gradient(
+                0deg,
+                var(--gold) 0px,
+                transparent 1px,
+                transparent 50px,
+                var(--gold) 51px
+            ),
+            repeating-linear-gradient(
+                90deg,
+                var(--gold) 0px,
+                transparent 1px,
+                transparent 50px,
+                var(--gold) 51px
+            );
+            animation: grid-move 20s linear infinite;
+        }
+
+        @keyframes grid-move {
+            from { background-position: 0 0, 0 0; }
+            to { background-position: 50px 50px, 50px 50px; }
+        }
+
+        section > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-title {
+            font-size: 3.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: var(--gold);
+            text-shadow: 0 0 40px var(--gold), 0 0 80px var(--gold);
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 5px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            box-shadow: 0 0 30px var(--gold);
+        }
+
+        .about-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 1.3rem;
+            line-height: 2;
+            color: var(--gold-light);
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+        }
+
+        .events-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .event-category {
+            margin-bottom: 4rem;
+        }
+
+        .category-title {
+            font-size: 2.5rem;
+            color: var(--gold);
+            text-align: center;
+            margin-bottom: 2rem;
+            text-shadow: 0 0 30px var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        .event-card {
+            background: linear-gradient(135deg, var(--darker-gray) 0%, var(--dark-gray) 100%);
+            backdrop-filter: blur(10px);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 3px solid var(--gold);
+            transition: all 0.4s;
+            cursor: pointer;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .event-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+            animation: card-glow 4s ease-in-out infinite;
+        }
+
+        @keyframes card-glow {
+            0%, 100% { transform: translate(0, 0); opacity: 0.3; }
+            50% { transform: translate(10%, 10%); opacity: 0.6; }
+        }
+
+        .event-card:hover {
+            transform: translateY(-15px) scale(1.03);
+            border-color: var(--gold-light);
+            box-shadow: 0 0 60px var(--gold), 0 20px 50px rgba(255, 215, 0, 0.5);
+        }
+
+        .event-card h3 {
+            color: var(--gold);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 20px var(--gold);
+            position: relative;
+            z-index: 1;
+        }
+
+        .event-card p {
+            color: var(--gold-light);
+            line-height: 1.8;
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .add-event-card {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 215, 0, 0.05) 100%);
+            border: 3px dashed var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            min-height: 250px;
+        }
+
+        .add-event-card:hover {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2) 0%, rgba(255, 215, 0, 0.1) 100%);
+        }
+
+        .add-event-card .plus-icon {
+            font-size: 4rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            text-shadow: 0 0 30px var(--gold);
+        }
+
+        .add-event-card p {
+            font-size: 1.3rem;
+            color: var(--gold);
+            text-shadow: 0 0 20px var(--gold);
+        }
+
+        .counter {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2.5rem;
+            margin: 4rem 0;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .counter-item {
+            text-align: center;
+            padding: 2.5rem;
+            background: linear-gradient(135deg, var(--darker-gray), var(--dark-gray));
+            border-radius: 20px;
+            border: 3px solid var(--gold);
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.3);
+        }
+
+        .counter-number {
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 30px var(--gold);
+        }
+
+        .counter-label {
+            font-size: 1.2rem;
+            color: var(--gold-light);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .timeline {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--gold), var(--gold-light), var(--gold));
+            box-shadow: 0 0 30px var(--gold);
+        }
+
+        .timeline-item {
+            margin-bottom: 4rem;
+            position: relative;
+            padding: 0 2rem;
+        }
+
+        .timeline-item:nth-child(odd) {
+            text-align: right;
+            padding-right: 55%;
+        }
+
+        .timeline-item:nth-child(even) {
+            text-align: left;
+            padding-left: 55%;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 30px;
+            height: 30px;
+            background: var(--gold);
+            border-radius: 50%;
+            border: 5px solid var(--black);
+            box-shadow: 0 0 40px var(--gold);
+        }
+
+        .timeline-item:nth-child(odd)::before {
+            right: calc(50% - 15px);
+        }
+
+        .timeline-item:nth-child(even)::before {
+            left: calc(50% - 15px);
+        }
+
+        .timeline-item h3 {
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+            font-size: 1.8rem;
+            text-shadow: 0 0 20px var(--gold);
+        }
+
+        .timeline-item h4 {
+            color: var(--gold-light);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .timeline-item p {
+            color: var(--gold-light);
+            font-size: 1.1rem;
+        }
+
+        .contact-form {
+            max-width: 700px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, var(--darker-gray), var(--dark-gray));
+            padding: 3.5rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 3px solid var(--gold);
+            box-shadow: 0 0 60px rgba(255, 215, 0, 0.4);
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            color: var(--gold);
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1.2rem;
+            background: rgba(0, 0, 0, 0.5);
+            border: 2px solid var(--gold);
+            border-radius: 10px;
+            color: var(--gold-light);
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: inset 0 0 20px rgba(255, 215, 0, 0.1);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--gold-light);
+            background: rgba(0, 0, 0, 0.7);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.3), inset 0 0 30px rgba(255, 215, 0, 0.2);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        footer {
+            background: var(--black);
+            text-align: center;
+            padding: 2.5rem;
+            border-top: 3px solid var(--gold);
+            box-shadow: 0 -5px 40px rgba(255, 215, 0, 0.3);
+        }
+
+        footer p {
+            color: var(--gold);
+            font-size: 1.1rem;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3.5rem; letter-spacing: 5px; }
+            .hero h2 { font-size: 1.6rem; }
+            .nav-links { display: none; }
+            .section-title { font-size: 2.5rem; }
+            .timeline-item:nth-child(odd),
+            .timeline-item:nth-child(even) {
+                padding-left: 3rem;
+                padding-right: 1rem;
+                text-align: left;
+            }
+            .timeline::before { left: 1rem; }
+            .timeline-item::before { left: calc(1rem - 15px) !important; }
+            .events-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-20px); }
+            60% { transform: translateX(-50%) translateY(-10px); }
+        }
+
+        .scroll-indicator::before {
+            content: '↓';
+            font-size: 3rem;
+            color: var(--gold);
+            text-shadow: 0 0 30px var(--gold);
+        }
+    </style>
 </head>
 <body>
+    <nav class="navbar">
+        <div class="logo">DRESTEIN'25 MECH</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#events">Events</a></li>
+            <li><a href="#schedule">Schedule</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
 
-<!-- === NAVBAR === -->
-<nav>
-  <a href="#home">Home</a>
-  <a href="#about">About</a>
-  <a href="#events">Events</a>
-  <a href="#contact">Contact</a>
-</nav>
+    <section id="home" class="hero">
+        <div class="gear-pattern-bg"></div>
+        <div class="mech-element piston-shaft"></div>
+        <div class="mech-element circuit-board"></div>
+        <div class="mech-element turbine-blade"></div>
 
-<!-- === HERO === -->
-<section id="home" class="hero">
-  <h1>DRESTEIN'25 MECH</h1>
-  <h2>Department of Mechanical Engineering</h2>
-  <p>National Level Technical & Management Fest</p>
-  <button onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">Explore</button>
-</section>
+        <div class="hero-content">
+            <h1>DRESTEIN'25 MECH</h1>
+            <h2>Department of Mechanical Engineering</h2>
+            <p>16th National Level Inter Collegiate Technical & Management Fest</p>
+            <p style="font-size: 1.5rem; margin-bottom: 1rem; font-weight: bold;">📅 November 5-9, 2025</p>
+            <button class="cta-button" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Register Now</button>
+        </div>
+        <div class="scroll-indicator"></div>
+    </section>
 
-<!-- === ABOUT === -->
-<section id="about" class="about">
-  <h2 class="section-title">About</h2>
-  <p>DRESTEIN’25 is the 16th National Level Technical and Management Fest organized by the Department of Mechanical Engineering. It celebrates innovation, design, and engineering brilliance — where creativity meets mechanics.</p>
-</section>
+    <section id="about">
+        <h2 class="section-title">About Drestein</h2>
+        <div class="about-content">
+            <p>Drestein is the flagship technical fest of the Department of Mechanical Engineering, celebrating innovation, creativity, and engineering excellence. For over 15 years, we've brought together brilliant minds from across the nation to compete, collaborate, and create.</p>
+            <p style="margin-top: 2rem;">Join us for two days of technical competitions, workshops, guest lectures, and networking opportunities that will shape the future of mechanical engineering.</p>
+        </div>
+        
+        <div class="counter">
+            <div class="counter-item">
+                <div class="counter-number">2</div>
+                <div class="counter-label">Days of Innovation</div>
+            </div>
+            <div class="counter-item">
+                <div class="counter-number">50+</div>
+                <div class="counter-label">Participating Colleges</div>
+            </div>
+            <div class="counter-item">
+                <div class="counter-number">25+</div>
+                <div class="counter-label">Technical Events</div>
+            </div>
+            <div class="counter-item">
+                <div class="counter-number">₹10L+</div>
+                <div class="counter-label">Prize Money</div>
+            </div>
+        </div>
+    </section>
 
-<!-- === EVENTS === -->
-<section id="events">
-  <h2 class="section-title">Events</h2>
-  <div class="events">
-    <div class="event-card">
-      <h3>🛠️ CAD Modeling</h3>
-      <p>Show your design skills in 3D modeling challenges.</p>
-    </div>
-    <div class="event-card">
-      <h3>🚗 Auto Quiz</h3>
-      <p>Test your knowledge of automobiles and mechanics.</p>
-    </div>
-    <div class="event-card">
-      <h3>🔧 Mech Innovate</h3>
-      <p>Pitch innovative mechanical solutions to real-world problems.</p>
-    </div>
-  </div>
-</section>
+    <section id="events">
+        <h2 class="section-title">Events</h2>
+        <div class="events-container">
+            <div class="event-category">
+                <h3 class="category-title">⚙️ Technical Events</h3>
+                <div class="events-grid">
+                    <div class="event-card">
+                        <h3>🛠️ 3D CATIA Workshop</h3>
+                        <p>A hands-on workshop covering advanced 3D modeling and design principles using CATIA software. Perfect for aspiring design engineers.</p>
+                    </div>
+                    <div class="event-card">
+                        <h3>💡 Pitchathon</h3>
+                        <p>Present your groundbreaking engineering ideas to a panel of experts. An opportunity to turn your innovative concepts into reality.</p>
+                    </div>
+                    </div>
+            </div>
 
-<!-- === CONTACT === -->
-<section id="contact">
-  <h2 class="section-title">Contact Us</h2>
-  <form>
-    <label for="name">Name</label>
-    <input type="text" id="name" required>
-    <label for="email">Email</label>
-    <input type="email" id="email" required>
-    <label for="message">Message</label>
-    <textarea id="message" rows="4" required></textarea>
-    <button type="submit" class="submit-btn">Send Message</button>
-  </form>
-</section>
+            <div class="event-category">
+                <h3 class="category-title">💡 Innovation & Design</h3>
+                <div class="events-grid">
+                    <div class="event-card">
+                        <h3>🚀 Paper Presentation</h3>
+                        <p>Present your research and innovative ideas. Share cutting-edge solutions to real-world engineering challenges with peers and experts.</p>
+                    </div>
+                    <div class="event-card add-event-card">
+                        <div class="plus-icon">+</div>
+                        <p>Add Your Event</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- === FOOTER === -->
-<footer>
-  <p>⚙️ DRESTEIN'25 | Department of Mechanical Engineering ⚙️<br>All Rights Reserved © 2025</p>
-</footer>
+    <section id="schedule">
+        <h2 class="section-title">Schedule</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <h3>Day 1: November 5, 2025</h3>
+                <h4>Morning</h4>
+                <p>Inauguration Ceremony & Keynote Speech</p>
+            </div>
+            <div class="timeline-item">
+                <h3>Day 1: November 5, 2025</h3>
+                <h4>Afternoon</h4>
+                <p>Workshops & Preliminary Rounds</p>
+            </div>
+            <div class="timeline-item">
+                <h3>Day 2: November 6, 2025</h3>
+                <h4>Full Day</h4>
+                <p>Main Events & Competitions</p>
+            </div>
+            <div class="timeline-item">
+                <h3>Day 2: November 6, 2025</h3>
+                <h4>Evening</h4>
+                <p>Prize Distribution & Closing Ceremony</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2 class="section-title">Contact Us</h2>
+        <div class="contact-form">
+            <form>
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit" class="cta-button" style="width: 100%;">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Department of Mechanical Engineering. All Rights Reserved.</p>
+    </footer>
 
 </body>
 </html>
