@@ -1,772 +1,231 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Drestein'25 | Department of Mechanical Engineering</title>
-    <meta name="description" content="16th National Level Inter Collegiate Technical and Management Fest - Department of Mechanical Engineering">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --gold: #FFD700;
-            --gold-dark: #B8860B;
-            --gold-light: #FFED4E;
-            --black: #000000;
-            --dark-gray: #0a0a0a;
-            --darker-gray: #1a1a1a;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: var(--black);
-            color: var(--gold);
-            overflow-x: hidden;
-        }
-
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            border-bottom: 3px solid var(--gold);
-            box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
-        }
-
-        .logo {
-            font-size: 2rem;
-            font-weight: bold;
-            color: var(--gold);
-            text-shadow: 0 0 30px var(--gold), 0 0 60px var(--gold);
-            letter-spacing: 3px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--gold);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s;
-            position: relative;
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-        }
-
-        .nav-links a:hover {
-            color: var(--gold-light);
-            text-shadow: 0 0 20px var(--gold), 0 0 40px var(--gold);
-        }
-
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            background: radial-gradient(circle at center, #1a1a1a 0%, #000000 100%);
-        }
-
-        /* --- CHANGE: Toned down the background brightness --- */
-        .hero::before {
-            content: '';
-            position: absolute;
-            width: 1000px;
-            height: 1000px;
-            background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 60%);
-            animation: pulse-subtle 5s ease-in-out infinite;
-        }
-
-        @keyframes pulse-subtle {
-            0%, 100% { 
-                transform: scale(0.9);
-                opacity: 0.2;
-            }
-            50% { 
-                transform: scale(1.2);
-                opacity: 0.3;
-            }
-        }
-
-        /* --- START: New Attractive Particle Background CSS --- */
-        .particle-container {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: 0;
-            overflow: hidden;
-        }
-
-        .particle {
-            position: absolute;
-            bottom: -20px;
-            background-color: var(--gold);
-            border-radius: 50%;
-            opacity: 0;
-            animation: float-particle 20s infinite linear;
-            box-shadow: 0 0 15px var(--gold), 0 0 25px var(--gold);
-        }
-
-        @keyframes float-particle {
-            0% {
-                transform: translateY(0) translateX(0);
-                opacity: 0.7;
-            }
-            50% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-110vh) translateX(20px);
-                opacity: 0;
-            }
-        }
-
-        /* Randomizing particles for a natural feel */
-        .particle:nth-child(1) { width: 5px; height: 5px; left: 10%; animation-duration: 15s; animation-delay: 1s; }
-        .particle:nth-child(2) { width: 8px; height: 8px; left: 20%; animation-duration: 12s; animation-delay: 3s; }
-        .particle:nth-child(3) { width: 4px; height: 4px; left: 30%; animation-duration: 20s; animation-delay: 0s; }
-        .particle:nth-child(4) { width: 6px; height: 6px; left: 40%; animation-duration: 18s; animation-delay: 5s; }
-        .particle:nth-child(5) { width: 5px; height: 5px; left: 50%; animation-duration: 13s; animation-delay: 2s; }
-        .particle:nth-child(6) { width: 9px; height: 9px; left: 60%; animation-duration: 11s; animation-delay: 6s; }
-        .particle:nth-child(7) { width: 4px; height: 4px; left: 70%; animation-duration: 22s; animation-delay: 1s; }
-        .particle:nth-child(8) { width: 7px; height: 7px; left: 80%; animation-duration: 16s; animation-delay: 4s; }
-        .particle:nth-child(9) { width: 5px; height: 5px; left: 90%; animation-duration: 19s; animation-delay: 0.5s; }
-        .particle:nth-child(10) { width: 6px; height: 6px; left: 5%; animation-duration: 14s; animation-delay: 7s; }
-        .particle:nth-child(11) { width: 8px; height: 8px; left: 25%; animation-duration: 21s; animation-delay: 2.5s; }
-        .particle:nth-child(12) { width: 4px; height: 4px; left: 55%; animation-duration: 17s; animation-delay: 4.5s; }
-        .particle:nth-child(13) { width: 7px; height: 7px; left: 75%; animation-duration: 12.5s; animation-delay: 1.5s; }
-        .particle:nth-child(14) { width: 5px; height: 5px; left: 95%; animation-duration: 23s; animation-delay: 3.5s; }
-        .particle:nth-child(15) { width: 6px; height: 6px; left: 15%; animation-duration: 15.5s; animation-delay: 8s; }
-        /* --- END: New Attractive Particle Background CSS --- */
-        
-        /* --- REMOVED CSS for .gear, .piston, .bolt, .circuit and their animations --- */
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            animation: fadeInUp 1s ease-out;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero h1 {
-            font-size: 6rem;
-            margin-bottom: 1rem;
-            color: var(--gold);
-            text-shadow: 0 0 40px var(--gold), 0 0 80px var(--gold), 0 0 120px var(--gold);
-            letter-spacing: 10px;
-            animation: glow-intense 2s ease-in-out infinite alternate;
-        }
-
-        @keyframes glow-intense {
-            from { 
-                text-shadow: 0 0 40px var(--gold), 0 0 80px var(--gold);
-            }
-            to { 
-                text-shadow: 0 0 60px var(--gold), 0 0 120px var(--gold), 0 0 180px var(--gold);
-            }
-        }
-
-        .hero h2 {
-            font-size: 2.2rem;
-            color: var(--gold);
-            margin-bottom: 1rem;
-            text-shadow: 0 0 30px var(--gold);
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            color: var(--gold-light);
-            margin-bottom: 2rem;
-            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
-        }
-
-        .cta-button {
-            padding: 1.2rem 3.5rem;
-            font-size: 1.2rem;
-            background: linear-gradient(45deg, var(--gold), var(--gold-light));
-            color: var(--black);
-            border: 3px solid var(--gold);
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s;
-            box-shadow: 0 0 40px var(--gold), 0 10px 40px rgba(255, 215, 0, 0.5);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 0 60px var(--gold), 0 15px 60px rgba(255, 215, 0, 0.8);
-            background: linear-gradient(45deg, var(--gold-light), var(--gold));
-        }
-
-        section {
-            padding: 5rem 5%;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-            background: var(--black);
-        }
-
-        section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0.08;
-            z-index: 0;
-            pointer-events: none;
-            background: repeating-linear-gradient(
-                0deg,
-                var(--gold) 0px,
-                transparent 1px,
-                transparent 50px,
-                var(--gold) 51px
-            ),
-            repeating-linear-gradient(
-                90deg,
-                var(--gold) 0px,
-                transparent 1px,
-                transparent 50px,
-                var(--gold) 51px
-            );
-            animation: grid-move 20s linear infinite;
-        }
-
-        @keyframes grid-move {
-            from { background-position: 0 0, 0 0; }
-            to { background-position: 50px 50px, 50px 50px; }
-        }
-
-        section > * {
-            position: relative;
-            z-index: 1;
-        }
-
-        .section-title {
-            font-size: 3.5rem;
-            margin-bottom: 3rem;
-            text-align: center;
-            color: var(--gold);
-            text-shadow: 0 0 40px var(--gold), 0 0 80px var(--gold);
-            letter-spacing: 5px;
-            text-transform: uppercase;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 200px;
-            height: 5px;
-            background: linear-gradient(90deg, transparent, var(--gold), transparent);
-            box-shadow: 0 0 30px var(--gold);
-        }
-
-        .about-content {
-            max-width: 1000px;
-            margin: 0 auto;
-            text-align: center;
-            font-size: 1.3rem;
-            line-height: 2;
-            color: var(--gold-light);
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
-        }
-
-        .events-container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .event-category {
-            margin-bottom: 4rem;
-        }
-
-        .category-title {
-            font-size: 2.5rem;
-            color: var(--gold);
-            text-align: center;
-            margin-bottom: 2rem;
-            text-shadow: 0 0 30px var(--gold);
-            text-transform: uppercase;
-            letter-spacing: 3px;
-        }
-
-        .events-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2.5rem;
-            margin-top: 2rem;
-        }
-
-        .event-card {
-            background: linear-gradient(135deg, var(--darker-gray) 0%, var(--dark-gray) 100%);
-            backdrop-filter: blur(10px);
-            padding: 2.5rem;
-            border-radius: 20px;
-            border: 3px solid var(--gold);
-            transition: all 0.4s;
-            cursor: pointer;
-            box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .event-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
-            animation: card-glow 4s ease-in-out infinite;
-        }
-
-        @keyframes card-glow {
-            0%, 100% { transform: translate(0, 0); opacity: 0.3; }
-            50% { transform: translate(10%, 10%); opacity: 0.6; }
-        }
-
-        .event-card:hover {
-            transform: translateY(-15px) scale(1.03);
-            border-color: var(--gold-light);
-            box-shadow: 0 0 60px var(--gold), 0 20px 50px rgba(255, 215, 0, 0.5);
-        }
-
-        .event-card h3 {
-            color: var(--gold);
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            text-shadow: 0 0 20px var(--gold);
-            position: relative;
-            z-index: 1;
-        }
-
-        .event-card p {
-            color: var(--gold-light);
-            line-height: 1.8;
-            font-size: 1.1rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .add-event-card {
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 215, 0, 0.05) 100%);
-            border: 3px dashed var(--gold);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            min-height: 250px;
-        }
-
-        .add-event-card:hover {
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2) 0%, rgba(255, 215, 0, 0.1) 100%);
-        }
-
-        .add-event-card .plus-icon {
-            font-size: 4rem;
-            color: var(--gold);
-            margin-bottom: 1rem;
-            text-shadow: 0 0 30px var(--gold);
-        }
-
-        .add-event-card p {
-            font-size: 1.3rem;
-            color: var(--gold);
-            text-shadow: 0 0 20px var(--gold);
-        }
-
-        .counter {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2.5rem;
-            margin: 4rem 0;
-            max-width: 1200px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .counter-item {
-            text-align: center;
-            padding: 2.5rem;
-            background: linear-gradient(135deg, var(--darker-gray), var(--dark-gray));
-            border-radius: 20px;
-            border: 3px solid var(--gold);
-            box-shadow: 0 0 40px rgba(255, 215, 0, 0.3);
-        }
-
-        .counter-number {
-            font-size: 3.5rem;
-            font-weight: bold;
-            color: var(--gold);
-            margin-bottom: 0.5rem;
-            text-shadow: 0 0 30px var(--gold);
-        }
-
-        .counter-label {
-            font-size: 1.2rem;
-            color: var(--gold-light);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .timeline {
-            max-width: 900px;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 5px;
-            height: 100%;
-            background: linear-gradient(180deg, var(--gold), var(--gold-light), var(--gold));
-            box-shadow: 0 0 30px var(--gold);
-        }
-
-        .timeline-item {
-            margin-bottom: 4rem;
-            position: relative;
-            padding: 0 2rem;
-        }
-
-        .timeline-item:nth-child(odd) {
-            text-align: right;
-            padding-right: 55%;
-        }
-
-        .timeline-item:nth-child(even) {
-            text-align: left;
-            padding-left: 55%;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            width: 30px;
-            height: 30px;
-            background: var(--gold);
-            border-radius: 50%;
-            border: 5px solid var(--black);
-            box-shadow: 0 0 40px var(--gold);
-        }
-
-        .timeline-item:nth-child(odd)::before {
-            right: calc(50% - 15px);
-        }
-
-        .timeline-item:nth-child(even)::before {
-            left: calc(50% - 15px);
-        }
-
-        .timeline-item h3 {
-            color: var(--gold);
-            margin-bottom: 0.5rem;
-            font-size: 1.8rem;
-            text-shadow: 0 0 20px var(--gold);
-        }
-
-        .timeline-item h4 {
-            color: var(--gold-light);
-            margin-bottom: 0.5rem;
-            font-size: 1.3rem;
-        }
-
-        .timeline-item p {
-            color: var(--gold-light);
-            font-size: 1.1rem;
-        }
-
-        .contact-form {
-            max-width: 700px;
-            margin: 0 auto;
-            background: linear-gradient(135deg, var(--darker-gray), var(--dark-gray));
-            padding: 3.5rem;
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            border: 3px solid var(--gold);
-            box-shadow: 0 0 60px rgba(255, 215, 0, 0.4);
-        }
-
-        .form-group {
-            margin-bottom: 2rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.8rem;
-            color: var(--gold);
-            font-size: 1.2rem;
-            font-weight: 600;
-            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 1.2rem;
-            background: rgba(0, 0, 0, 0.5);
-            border: 2px solid var(--gold);
-            border-radius: 10px;
-            color: var(--gold-light);
-            font-size: 1.1rem;
-            transition: all 0.3s;
-            box-shadow: inset 0 0 20px rgba(255, 215, 0, 0.1);
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--gold-light);
-            background: rgba(0, 0, 0, 0.7);
-            box-shadow: 0 0 30px rgba(255, 215, 0, 0.3), inset 0 0 30px rgba(255, 215, 0, 0.2);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 150px;
-        }
-
-        footer {
-            background: var(--black);
-            text-align: center;
-            padding: 2.5rem;
-            border-top: 3px solid var(--gold);
-            box-shadow: 0 -5px 40px rgba(255, 215, 0, 0.3);
-        }
-
-        footer p {
-            color: var(--gold);
-            font-size: 1.1rem;
-            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 3.5rem; letter-spacing: 5px; }
-            .hero h2 { font-size: 1.6rem; }
-            .nav-links { display: none; }
-            .section-title { font-size: 2.5rem; }
-            .timeline-item:nth-child(odd),
-            .timeline-item:nth-child(even) {
-                padding-left: 3rem;
-                padding-right: 1rem;
-                text-align: left;
-            }
-            .timeline::before { left: 1rem; }
-            .timeline-item::before { left: calc(1rem - 15px) !important; }
-            .events-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .scroll-indicator {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
-            40% { transform: translateX(-50%) translateY(-20px); }
-            60% { transform: translateX(-50%) translateY(-10px); }
-        }
-
-        .scroll-indicator::before {
-            content: '↓';
-            font-size: 3rem;
-            color: var(--gold);
-            text-shadow: 0 0 30px var(--gold);
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Drestein'25 | Department of Mechanical Engineering</title>
+<meta name="description" content="16th National Level Inter Collegiate Technical and Management Fest - Department of Mechanical Engineering">
+<style>
+/* ---------- CORE THEME ---------- */
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+--gold:#FFD700;--gold-dark:#B8860B;--gold-light:#FFED4E;
+--black:#000;--dark-gray:#0a0a0a;--darker-gray:#1a1a1a;
+}
+body{
+font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+background:var(--black);
+color:var(--gold);
+overflow-x:hidden;
+}
+
+/* ---------- NAVBAR ---------- */
+.navbar{
+position:fixed;top:0;width:100%;
+background:rgba(0,0,0,0.95);
+backdrop-filter:blur(10px);
+padding:1rem 5%;
+display:flex;justify-content:space-between;align-items:center;
+z-index:1000;border-bottom:3px solid var(--gold);
+box-shadow:0 0 30px rgba(255,215,0,.5);
+}
+.logo{
+font-size:2rem;font-weight:bold;color:var(--gold);
+text-shadow:0 0 30px var(--gold),0 0 60px var(--gold);
+letter-spacing:3px;
+animation:metallic-glow 3s infinite alternate;
+}
+@keyframes metallic-glow{
+from{text-shadow:0 0 15px var(--gold);}
+to{text-shadow:0 0 40px var(--gold-light);}
+}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{
+color:var(--gold);text-decoration:none;font-weight:600;
+font-size:1.1rem;transition:all .3s;position:relative;
+text-shadow:0 0 10px rgba(255,215,0,.5);
+}
+.nav-links a:hover{color:var(--gold-light);text-shadow:0 0 25px var(--gold);}
+
+/* ---------- HERO SECTION ---------- */
+.hero{
+height:100vh;display:flex;align-items:center;justify-content:center;
+text-align:center;position:relative;overflow:hidden;
+background:radial-gradient(circle at center,#1a1a1a 0%,#000 100%);
+}
+.hero::before{
+content:'';position:absolute;width:100%;height:100%;
+background:url('https://i.ibb.co/1QL6xTy/gear-bg-dark.gif') center/cover no-repeat;
+opacity:0.12;z-index:0;
+animation:slow-spin 60s linear infinite;
+}
+@keyframes slow-spin{
+0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}
+}
+.particle-container{position:absolute;width:100%;height:100%;top:0;left:0;z-index:1;overflow:hidden;}
+.particle{position:absolute;bottom:-20px;background-color:var(--gold);border-radius:50%;opacity:0;
+animation:float-particle 20s infinite linear;
+box-shadow:0 0 15px var(--gold),0 0 25px var(--gold);}
+@keyframes float-particle{
+0%{transform:translateY(0)translateX(0);opacity:.7;}
+50%{opacity:1;}
+100%{transform:translateY(-110vh)translateX(20px);opacity:0;}
+}
+
+/* Random particle pattern */
+.particle:nth-child(1){width:5px;height:5px;left:10%;animation-duration:15s;animation-delay:1s}
+.particle:nth-child(2){width:8px;height:8px;left:20%;animation-duration:12s;animation-delay:3s}
+.particle:nth-child(3){width:4px;height:4px;left:30%;animation-duration:20s}
+.particle:nth-child(4){width:6px;height:6px;left:40%;animation-duration:18s;animation-delay:5s}
+.particle:nth-child(5){width:9px;height:9px;left:60%;animation-duration:11s;animation-delay:6s}
+
+.hero-content{position:relative;z-index:2;animation:fadeInUp 1s ease-out;}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(50px);}to{opacity:1;transform:translateY(0);}}
+.hero h1{
+font-size:6rem;margin-bottom:1rem;color:var(--gold);
+text-shadow:0 0 40px var(--gold),0 0 80px var(--gold);
+letter-spacing:10px;animation:glow-intense 2s ease-in-out infinite alternate;
+}
+@keyframes glow-intense{
+from{text-shadow:0 0 40px var(--gold);}
+to{text-shadow:0 0 120px var(--gold-light);}
+}
+.hero h2{font-size:2.2rem;margin-bottom:1rem;text-shadow:0 0 30px var(--gold);}
+.hero p{font-size:1.3rem;color:var(--gold-light);margin-bottom:1.5rem;}
+.cta-button{
+padding:1.2rem 3.5rem;font-size:1.2rem;
+background:linear-gradient(45deg,var(--gold),var(--gold-light));
+color:var(--black);border:3px solid var(--gold);border-radius:50px;
+cursor:pointer;font-weight:bold;transition:.3s;box-shadow:0 0 40px var(--gold);
+}
+.cta-button:hover{transform:translateY(-5px)scale(1.05);box-shadow:0 0 60px var(--gold);}
+.scroll-indicator{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);
+animation:bounce 2s infinite;}
+.scroll-indicator::before{content:'↓';font-size:3rem;color:var(--gold);text-shadow:0 0 30px var(--gold);}
+@keyframes bounce{0%,20%,50%,80%,100%{transform:translateX(-50%)translateY(0);}
+40%{transform:translateX(-50%)translateY(-20px);}
+60%{transform:translateX(-50%)translateY(-10px);}}
+
+/* ---------- SECTION DECOR ---------- */
+section{padding:5rem 5%;position:relative;overflow:hidden;min-height:100vh;background:var(--black);}
+.section-title{
+font-size:3.5rem;margin-bottom:3rem;text-align:center;color:var(--gold);
+text-shadow:0 0 40px var(--gold);text-transform:uppercase;position:relative;
+}
+.section-title::after{
+content:'';position:absolute;bottom:-15px;left:50%;transform:translateX(-50%);
+width:200px;height:5px;background:linear-gradient(90deg,transparent,var(--gold),transparent);
+box-shadow:0 0 30px var(--gold);
+}
+/* gear gif behind title */
+.section-title::before{
+content:'';position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+width:120px;height:120px;opacity:0.1;
+background:url('https://i.ibb.co/6P6PSqZ/rotating-gear.gif') center/contain no-repeat;
+animation:spin-slow 20s linear infinite;
+}
+@keyframes spin-slow{0%{transform:translate(-50%,-50%) rotate(0deg);}100%{transform:translate(-50%,-50%) rotate(360deg);}}
+
+/* ---------- EVENTS ---------- */
+.events-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:2.5rem;}
+.event-card{
+background:linear-gradient(135deg,var(--darker-gray),var(--dark-gray));
+padding:2.5rem;border-radius:20px;border:3px solid var(--gold);
+box-shadow:0 0 30px rgba(255,215,0,0.3);transition:.4s;position:relative;
+overflow:hidden;
+}
+.event-card:hover{
+transform:translateY(-15px)scale(1.03);
+border-color:var(--gold-light);
+box-shadow:0 0 60px var(--gold);
+}
+.event-card::before{
+content:'';position:absolute;top:10px;right:10px;width:60px;height:60px;
+background:url('https://i.ibb.co/6P6PSqZ/rotating-gear.gif') center/contain no-repeat;
+opacity:.25;animation:spin-slow 12s linear infinite;
+}
+.event-card h3{color:var(--gold);margin-bottom:1rem;text-shadow:0 0 20px var(--gold);}
+.event-card p{color:var(--gold-light);}
+
+/* ---------- CONTACT ---------- */
+.contact-form{
+max-width:700px;margin:0 auto;padding:3rem;
+background:rgba(0,0,0,0.7) url('https://i.ibb.co/pRJ9pW3/engine-bg.gif') center/cover no-repeat;
+border-radius:20px;border:3px solid var(--gold);box-shadow:0 0 60px rgba(255,215,0,0.4);
+}
+.contact-form label{color:var(--gold);font-weight:600;margin-bottom:.5rem;display:block;}
+.contact-form input,.contact-form textarea{
+width:100%;padding:1rem;border:2px solid var(--gold);
+background:rgba(0,0,0,0.5);border-radius:10px;color:var(--gold-light);margin-bottom:1rem;
+}
+footer{text-align:center;padding:2.5rem;background:#000;border-top:3px solid var(--gold);}
+footer::before{
+content:'';position:absolute;width:100%;height:100%;
+background:url('https://i.ibb.co/xHsnV6Z/car-engine-footer.gif') center/cover no-repeat;
+opacity:0.05;top:0;left:0;z-index:0;
+}
+footer p{position:relative;z-index:1;color:var(--gold);}
+</style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="logo">DRESTEIN'25 MECH</div>
-        <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#events">Events</a></li>
-            <li><a href="#schedule">Schedule</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
 
-    <section id="home" class="hero">
-        <div class="particle-container">
-            <div class="particle"></div> <div class="particle"></div>
-            <div class="particle"></div> <div class="particle"></div>
-            <div class="particle"></div> <div class="particle"></div>
-            <div class="particle"></div> <div class="particle"></div>
-            <div class="particle"></div> <div class="particle"></div>
-            <div class="particle"></div> <div class="particle"></div>
-            <div class="particle"></div> <div class="particle"></div>
-            <div class="particle"></div>
-        </div>
-        <div class="hero-content">
-            <h1>DRESTEIN'25 MECH</h1>
-            <h2>Department of Mechanical Engineering</h2>
-            <p>16th National Level Inter Collegiate Technical & Management Fest</p>
-            <p style="font-size: 1.5rem; margin-bottom: 1rem; font-weight: bold;">📅 November 5-9, 2025</p>
-            <button class="cta-button" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Register Now</button>
-        </div>
-        <div class="scroll-indicator"></div>
-    </section>
+<nav class="navbar">
+<div class="logo">DRESTEIN'25 MECH</div>
+<ul class="nav-links">
+<li><a href="#home">Home</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#events">Events</a></li>
+<li><a href="#schedule">Schedule</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
 
-    <section id="about">
-        <h2 class="section-title">About Drestein</h2>
-        <div class="about-content">
-            <p>Drestein is the flagship technical fest of the Department of Mechanical Engineering, celebrating innovation, creativity, and engineering excellence. For over 15 years, we've brought together brilliant minds from across the nation to compete, collaborate, and create.</p>
-            <p style="margin-top: 2rem;">Join us for two days of technical competitions, workshops, guest lectures, and networking opportunities that will shape the future of mechanical engineering.</p>
-        </div>
-        
-        <div class="counter">
-            <div class="counter-item">
-                <div class="counter-number">2</div>
-                <div class="counter-label">Days of Innovation</div>
-            </div>
-            <div class="counter-item">
-                <div class="counter-number">50+</div>
-                <div class="counter-label">Participating Colleges</div>
-            </div>
-            <div class="counter-item">
-                <div class="counter-number">25+</div>
-                <div class="counter-label">Technical Events</div>
-            </div>
-            <div class="counter-item">
-                <div class="counter-number">₹10L+</div>
-                <div class="counter-label">Prize Money</div>
-            </div>
-        </div>
-    </section>
+<section id="home" class="hero">
+<div class="particle-container">
+<div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div>
+</div>
+<div class="hero-content">
+<h1>DRESTEIN'25 MECH</h1>
+<h2>Department of Mechanical Engineering</h2>
+<p>16th National Level Inter Collegiate Technical & Management Fest</p>
+<p style="font-size:1.5rem;margin-bottom:1rem;font-weight:bold;">📅 November 5–9, 2025</p>
+<button class="cta-button" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Register Now</button>
+</div>
+<div class="scroll-indicator"></div>
+</section>
 
-    <section id="events">
-        <h2 class="section-title">Events</h2>
-        <div class="events-container">
-            <div class="event-category">
-                <h3 class="category-title">⚙️ Technical Events</h3>
-                <div class="events-grid">
-                    <div class="event-card">
-                        <h3>🛠️ 3D CATIA Workshop</h3>
-                        <p>A hands-on workshop covering advanced 3D modeling and design principles using CATIA software. Perfect for aspiring design engineers.</p>
-                    </div>
-                    <div class="event-card">
-                        <h3>💡 Pitchathon</h3>
-                        <p>Present your groundbreaking engineering ideas to a panel of experts. An opportunity to turn your innovative concepts into reality.</p>
-                    </div>
-                    </div>
-            </div>
+<section id="about">
+<h2 class="section-title">About Drestein</h2>
+<div class="about-content" style="text-align:center;max-width:900px;margin:auto;color:var(--gold-light);font-size:1.3rem;">
+<p>Drestein is the flagship technical fest of the Department of Mechanical Engineering, celebrating innovation, creativity, and engineering excellence.</p>
+<p style="margin-top:2rem;">Join us for two days of competitions, workshops, and networking opportunities that shape the future of mechanical engineering.</p>
+</div>
+</section>
 
-            <div class="event-category">
-                <h3 class="category-title">💡 Innovation & Design</h3>
-                <div class="events-grid">
-                    <div class="event-card">
-                        <h3>🚀 Paper Presentation</h3>
-                        <p>Present your research and innovative ideas. Share cutting-edge solutions to real-world engineering challenges with peers and experts.</p>
-                    </div>
-                    <div class="event-card add-event-card">
-                        <div class="plus-icon">+</div>
-                        <p>Add Your Event</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<section id="events">
+<h2 class="section-title">Events</h2>
+<div class="events-grid">
+<div class="event-card"><h3>🛠️ 3D CATIA Workshop</h3><p>Hands-on advanced 3D modeling using CATIA software.</p></div>
+<div class="event-card"><h3>💡 Pitchathon</h3><p>Present innovative mechanical ideas to experts.</p></div>
+<div class="event-card"><h3>🚀 Paper Presentation</h3><p>Showcase research solving real-world challenges.</p></div>
+</div>
+</section>
 
-    <section id="schedule">
-        <h2 class="section-title">Schedule</h2>
-        <div class="timeline">
-            <div class="timeline-item">
-                <h3>Day 1: November 5, 2025</h3>
-                <h4>Morning</h4>
-                <p>Inauguration Ceremony & Keynote Speech</p>
-            </div>
-            <div class="timeline-item">
-                <h3>Day 1: November 5, 2025</h3>
-                <h4>Afternoon</h4>
-                <p>Workshops & Preliminary Rounds</p>
-            </div>
-            <div class="timeline-item">
-                <h3>Day 2: November 6, 2025</h3>
-                <h4>Full Day</h4>
-                <p>Main Events & Competitions</p>
-            </div>
-            <div class="timeline-item">
-                <h3>Day 2: November 6, 2025</h3>
-                <h4>Evening</h4>
-                <p>Prize Distribution & Closing Ceremony</p>
-            </div>
-        </div>
-    </section>
+<section id="contact">
+<h2 class="section-title">Contact Us</h2>
+<div class="contact-form">
+<form>
+<label>Full Name</label><input type="text" required>
+<label>Email Address</label><input type="email" required>
+<label>Message</label><textarea required></textarea>
+<button type="submit" class="cta-button" style="width:100%;">Send Message</button>
+</form>
+</div>
+</section>
 
-    <section id="contact">
-        <h2 class="section-title">Contact Us</h2>
-        <div class="contact-form">
-            <form>
-                <div class="form-group">
-                    <label for="name">Full Name</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" required></textarea>
-                </div>
-                <button type="submit" class="cta-button" style="width: 100%;">Send Message</button>
-            </form>
-        </div>
-    </section>
-
-    <footer>
-        <p>&copy; 2025 Department of Mechanical Engineering. All Rights Reserved.</p>
-    </footer>
+<footer>
+<p>&copy; 2025 Department of Mechanical Engineering. All Rights Reserved.</p>
+</footer>
 
 </body>
 </html>
