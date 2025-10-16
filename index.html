@@ -83,216 +83,81 @@
             background: radial-gradient(circle at center, #1a1a1a 0%, #000000 100%);
         }
 
+        /* --- CHANGE: Toned down the background brightness --- */
         .hero::before {
             content: '';
             position: absolute;
-            width: 800px;
-            height: 800px;
-            background: radial-gradient(circle, rgba(255, 215, 0, 0.3) 0%, transparent 70%);
-            animation: pulse-intense 3s ease-in-out infinite;
+            width: 1000px;
+            height: 1000px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 60%);
+            animation: pulse-subtle 5s ease-in-out infinite;
         }
 
-        @keyframes pulse-intense {
+        @keyframes pulse-subtle {
             0%, 100% { 
-                transform: scale(1);
-                opacity: 0.3;
+                transform: scale(0.9);
+                opacity: 0.2;
             }
             50% { 
-                transform: scale(1.5);
-                opacity: 0.6;
+                transform: scale(1.2);
+                opacity: 0.3;
             }
         }
 
-        .bg-animation {
+        /* --- START: New Attractive Particle Background CSS --- */
+        .particle-container {
             position: absolute;
             width: 100%;
             height: 100%;
             top: 0;
             left: 0;
-            opacity: 0.4;
             z-index: 0;
+            overflow: hidden;
         }
 
-        .gear {
+        .particle {
             position: absolute;
-            border: 10px solid var(--gold);
+            bottom: -20px;
+            background-color: var(--gold);
             border-radius: 50%;
-            animation: rotate 8s linear infinite;
-            box-shadow: 0 0 30px var(--gold), inset 0 0 30px var(--gold);
+            opacity: 0;
+            animation: float-particle 20s infinite linear;
+            box-shadow: 0 0 15px var(--gold), 0 0 25px var(--gold);
         }
 
-        .gear::before,
-        .gear::after {
-            content: '';
-            position: absolute;
-            background: var(--gold);
-            box-shadow: 0 0 20px var(--gold);
-        }
-
-        .gear::before {
-            width: 25px;
-            height: calc(100% + 30px);
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .gear::after {
-            width: calc(100% + 30px);
-            height: 25px;
-            left: -15px;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        .gear1 { 
-            width: 150px;
-            height: 150px;
-            top: 10%; 
-            left: 10%; 
-            animation-duration: 6s; 
-        }
-        .gear2 { 
-            width: 200px;
-            height: 200px;
-            top: 50%; 
-            right: 8%; 
-            animation-duration: 10s; 
-            animation-direction: reverse; 
-        }
-        .gear3 { 
-            width: 120px;
-            height: 120px;
-            bottom: 15%; 
-            left: 15%; 
-            animation-duration: 7s; 
-        }
-        .gear4 { 
-            width: 180px;
-            height: 180px;
-            top: 20%; 
-            right: 25%; 
-            animation-duration: 9s; 
-            animation-direction: reverse;
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .piston {
-            position: absolute;
-            width: 50px;
-            height: 100px;
-            background: linear-gradient(180deg, var(--gold-light), var(--gold-dark));
-            border-radius: 10px;
-            animation: piston-move 1.5s ease-in-out infinite;
-            box-shadow: 0 0 30px var(--gold);
-        }
-
-        .piston::before {
-            content: '';
-            position: absolute;
-            width: 70px;
-            height: 70px;
-            background: var(--gold);
-            border-radius: 50%;
-            top: -35px;
-            left: 50%;
-            transform: translateX(-50%);
-            box-shadow: 0 0 40px var(--gold), inset 0 0 20px var(--gold-dark);
-        }
-
-        .piston::after {
-            content: '';
-            position: absolute;
-            width: 12px;
-            height: 200px;
-            background: linear-gradient(180deg, var(--gold), var(--gold-dark));
-            top: 100px;
-            left: 50%;
-            transform: translateX(-50%);
-            box-shadow: 0 0 20px var(--gold);
-        }
-
-        @keyframes piston-move {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(50px); }
-        }
-
-        .piston1 { top: 15%; right: 20%; animation-delay: 0s; }
-        .piston2 { bottom: 15%; left: 25%; animation-delay: 0.5s; }
-        .piston3 { top: 40%; left: 5%; animation-delay: 0.75s; }
-
-        .bolt {
-            position: absolute;
-            width: 60px;
-            height: 60px;
-            background: var(--gold);
-            clip-path: polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%);
-            animation: rotate 12s linear infinite;
-            box-shadow: 0 0 40px var(--gold);
-        }
-
-        .bolt::before {
-            content: '';
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: var(--black);
-            border-radius: 50%;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        .bolt1 { top: 25%; left: 35%; animation-duration: 10s; }
-        .bolt2 { bottom: 30%; right: 30%; animation-duration: 15s; animation-direction: reverse; }
-
-        .circuit {
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            border: 3px solid var(--gold);
-            animation: circuit-pulse 3s ease-in-out infinite;
-        }
-
-        .circuit::before,
-        .circuit::after {
-            content: '';
-            position: absolute;
-            background: var(--gold);
-            box-shadow: 0 0 20px var(--gold);
-        }
-
-        .circuit::before {
-            width: 100%;
-            height: 3px;
-            top: 50%;
-            left: 0;
-        }
-
-        .circuit::after {
-            width: 3px;
-            height: 100%;
-            left: 50%;
-            top: 0;
-        }
-
-        @keyframes circuit-pulse {
-            0%, 100% { 
-                opacity: 0.3;
-                box-shadow: 0 0 20px var(--gold);
+        @keyframes float-particle {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 0.7;
             }
-            50% { 
-                opacity: 0.8;
-                box-shadow: 0 0 60px var(--gold);
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-110vh) translateX(20px);
+                opacity: 0;
             }
         }
 
-        .circuit1 { top: 10%; right: 15%; animation-delay: 0s; }
-        .circuit2 { bottom: 20%; left: 20%; animation-delay: 1s; }
+        /* Randomizing particles for a natural feel */
+        .particle:nth-child(1) { width: 5px; height: 5px; left: 10%; animation-duration: 15s; animation-delay: 1s; }
+        .particle:nth-child(2) { width: 8px; height: 8px; left: 20%; animation-duration: 12s; animation-delay: 3s; }
+        .particle:nth-child(3) { width: 4px; height: 4px; left: 30%; animation-duration: 20s; animation-delay: 0s; }
+        .particle:nth-child(4) { width: 6px; height: 6px; left: 40%; animation-duration: 18s; animation-delay: 5s; }
+        .particle:nth-child(5) { width: 5px; height: 5px; left: 50%; animation-duration: 13s; animation-delay: 2s; }
+        .particle:nth-child(6) { width: 9px; height: 9px; left: 60%; animation-duration: 11s; animation-delay: 6s; }
+        .particle:nth-child(7) { width: 4px; height: 4px; left: 70%; animation-duration: 22s; animation-delay: 1s; }
+        .particle:nth-child(8) { width: 7px; height: 7px; left: 80%; animation-duration: 16s; animation-delay: 4s; }
+        .particle:nth-child(9) { width: 5px; height: 5px; left: 90%; animation-duration: 19s; animation-delay: 0.5s; }
+        .particle:nth-child(10) { width: 6px; height: 6px; left: 5%; animation-duration: 14s; animation-delay: 7s; }
+        .particle:nth-child(11) { width: 8px; height: 8px; left: 25%; animation-duration: 21s; animation-delay: 2.5s; }
+        .particle:nth-child(12) { width: 4px; height: 4px; left: 55%; animation-duration: 17s; animation-delay: 4.5s; }
+        .particle:nth-child(13) { width: 7px; height: 7px; left: 75%; animation-duration: 12.5s; animation-delay: 1.5s; }
+        .particle:nth-child(14) { width: 5px; height: 5px; left: 95%; animation-duration: 23s; animation-delay: 3.5s; }
+        .particle:nth-child(15) { width: 6px; height: 6px; left: 15%; animation-duration: 15.5s; animation-delay: 8s; }
+        /* --- END: New Attractive Particle Background CSS --- */
+        
+        /* --- REMOVED CSS for .gear, .piston, .bolt, .circuit and their animations --- */
 
         .hero-content {
             position: relative;
@@ -772,18 +637,15 @@
     </nav>
 
     <section id="home" class="hero">
-        <div class="bg-animation">
-            <div class="gear gear1"></div>
-            <div class="gear gear2"></div>
-            <div class="gear gear3"></div>
-            <div class="gear gear4"></div>
-            <div class="piston piston1"></div>
-            <div class="piston piston2"></div>
-            <div class="piston piston3"></div>
-            <div class="bolt bolt1"></div>
-            <div class="bolt bolt2"></div>
-            <div class="circuit circuit1"></div>
-            <div class="circuit circuit2"></div>
+        <div class="particle-container">
+            <div class="particle"></div> <div class="particle"></div>
+            <div class="particle"></div> <div class="particle"></div>
+            <div class="particle"></div> <div class="particle"></div>
+            <div class="particle"></div> <div class="particle"></div>
+            <div class="particle"></div> <div class="particle"></div>
+            <div class="particle"></div> <div class="particle"></div>
+            <div class="particle"></div> <div class="particle"></div>
+            <div class="particle"></div>
         </div>
         <div class="hero-content">
             <h1>DRESTEIN'25 MECH</h1>
