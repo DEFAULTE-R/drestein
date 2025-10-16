@@ -5,23 +5,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DRESTEIN'25 | Mechanical Engineering</title>
 <style>
-/* ====== BASIC THEME ====== */
+/* === BASIC THEME === */
 body {
   margin: 0;
   font-family: "Segoe UI", Arial, sans-serif;
   background-color: #000;
   color: #FFD700;
+  scroll-behavior: smooth;
 }
 
-/* ====== NAVBAR ====== */
+/* === NAVBAR === */
 nav {
-  background-color: #111;
+  background-color: rgba(0, 0, 0, 0.9);
   padding: 15px 0;
   text-align: center;
   border-bottom: 2px solid #FFD700;
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 10;
 }
 
 nav a {
@@ -30,81 +31,86 @@ nav a {
   margin: 0 20px;
   font-weight: bold;
   font-size: 18px;
+  transition: 0.3s;
 }
 
 nav a:hover {
   color: #fff;
-  text-shadow: 0 0 10px #FFD700;
+  text-shadow: 0 0 15px #FFD700;
 }
 
-/* ====== HERO SECTION ====== */
+/* === HERO SECTION === */
 .hero {
-  background: url("https://media.tenor.com/wh8bB6z2McAAAAAC/gears.gif") center/cover no-repeat;
   height: 100vh;
+  background: 
+    linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+    url("https://i.pinimg.com/originals/0d/22/8c/0d228cf6ea0f76ea79c6b788b5e77cc4.gif") center/cover no-repeat;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  color: #FFD700;
 }
 
 .hero h1 {
-  font-size: 60px;
-  text-shadow: 0 0 25px #FFD700;
-  letter-spacing: 3px;
+  font-size: 65px;
+  text-shadow: 0 0 30px #FFD700;
+  margin-bottom: 10px;
 }
 
 .hero h2 {
   font-size: 24px;
   color: #ffeb7a;
-  margin-bottom: 20px;
+}
+
+.hero p {
+  margin-top: 10px;
+  font-size: 20px;
+  color: #FFF9C4;
 }
 
 .hero button {
   background-color: #FFD700;
   color: #000;
-  padding: 12px 25px;
+  padding: 12px 28px;
   border: none;
   border-radius: 25px;
   font-weight: bold;
+  margin-top: 25px;
   cursor: pointer;
   transition: 0.3s;
 }
-
 .hero button:hover {
   background-color: #ffeb7a;
   transform: scale(1.05);
 }
 
-/* ====== SECTIONS ====== */
+/* === SECTIONS === */
 section {
-  padding: 60px 20px;
+  padding: 70px 20px;
   text-align: center;
-  background-color: #000;
-}
-
-section:nth-child(even) {
-  background-color: #111;
 }
 
 h2.section-title {
   font-size: 36px;
   color: #FFD700;
-  margin-bottom: 20px;
-  text-shadow: 0 0 20px #FFD700;
+  margin-bottom: 30px;
+  text-shadow: 0 0 15px #FFD700;
 }
 
-/* ====== ABOUT ====== */
+/* === ABOUT === */
+.about {
+  background-color: #111;
+}
 .about p {
   max-width: 800px;
   margin: 0 auto;
   color: #ffeb7a;
   font-size: 18px;
-  line-height: 1.6;
+  line-height: 1.7;
 }
 
-/* ====== EVENTS ====== */
+/* === EVENTS === */
 .events {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -119,11 +125,12 @@ h2.section-title {
   border-radius: 15px;
   padding: 25px;
   transition: 0.3s;
+  box-shadow: 0 0 10px #000;
 }
 
 .event-card:hover {
   background-color: #222;
-  transform: translateY(-8px);
+  transform: translateY(-10px);
   box-shadow: 0 0 25px #FFD700;
 }
 
@@ -136,34 +143,34 @@ h2.section-title {
   color: #ffeb7a;
 }
 
-/* ====== CONTACT ====== */
+/* === CONTACT === */
+#contact {
+  background-color: #111;
+}
 form {
   max-width: 600px;
   margin: 0 auto;
-  background-color: #111;
+  background-color: #000;
   padding: 30px;
   border: 2px solid #FFD700;
   border-radius: 15px;
   text-align: left;
 }
-
 label {
   display: block;
   margin-top: 10px;
   color: #FFD700;
   font-weight: bold;
 }
-
 input, textarea {
   width: 100%;
   padding: 10px;
   margin-top: 5px;
   border-radius: 8px;
   border: 1px solid #FFD700;
-  background-color: #000;
+  background-color: #111;
   color: #FFD700;
 }
-
 button.submit-btn {
   width: 100%;
   background-color: #FFD700;
@@ -175,25 +182,37 @@ button.submit-btn {
   margin-top: 15px;
   cursor: pointer;
 }
-
 button.submit-btn:hover {
   background-color: #ffeb7a;
 }
 
-/* ====== FOOTER ====== */
+/* === FOOTER === */
 footer {
-  background: url("https://media.tenor.com/QYdLoP_jwUoAAAAC/engine.gif") center/cover no-repeat;
-  background-color: #000;
+  background: 
+    linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)),
+    url("https://i.pinimg.com/originals/7e/a3/2f/7ea32f594e5fcb20f1a7b7c978497d03.gif") center/cover no-repeat;
   text-align: center;
-  padding: 25px;
+  padding: 35px;
   border-top: 2px solid #FFD700;
   color: #FFD700;
+}
+footer p {
+  background-color: rgba(0,0,0,0.6);
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 600px) {
+  .hero h1 { font-size: 42px; }
+  .hero h2 { font-size: 18px; }
 }
 </style>
 </head>
 <body>
 
-<!-- ====== NAVBAR ====== -->
+<!-- === NAVBAR === -->
 <nav>
   <a href="#home">Home</a>
   <a href="#about">About</a>
@@ -201,7 +220,7 @@ footer {
   <a href="#contact">Contact</a>
 </nav>
 
-<!-- ====== HERO ====== -->
+<!-- === HERO === -->
 <section id="home" class="hero">
   <h1>DRESTEIN'25 MECH</h1>
   <h2>Department of Mechanical Engineering</h2>
@@ -209,32 +228,32 @@ footer {
   <button onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">Explore</button>
 </section>
 
-<!-- ====== ABOUT ====== -->
+<!-- === ABOUT === -->
 <section id="about" class="about">
   <h2 class="section-title">About</h2>
-  <p>DRESTEIN’25 is the 16th National Level Technical and Management Fest organized by the Department of Mechanical Engineering. It celebrates innovation, design, and mechanical excellence where creativity meets technology.</p>
+  <p>DRESTEIN’25 is the 16th National Level Technical and Management Fest organized by the Department of Mechanical Engineering. It celebrates innovation, design, and engineering brilliance — where creativity meets mechanics.</p>
 </section>
 
-<!-- ====== EVENTS ====== -->
+<!-- === EVENTS === -->
 <section id="events">
   <h2 class="section-title">Events</h2>
   <div class="events">
     <div class="event-card">
       <h3>🛠️ CAD Modeling</h3>
-      <p>Show your design skills using professional CAD tools.</p>
+      <p>Show your design skills in 3D modeling challenges.</p>
     </div>
     <div class="event-card">
       <h3>🚗 Auto Quiz</h3>
-      <p>Test your automotive knowledge in a fun way.</p>
+      <p>Test your knowledge of automobiles and mechanics.</p>
     </div>
     <div class="event-card">
       <h3>🔧 Mech Innovate</h3>
-      <p>Pitch your innovative mechanical solutions to real-world problems.</p>
+      <p>Pitch innovative mechanical solutions to real-world problems.</p>
     </div>
   </div>
 </section>
 
-<!-- ====== CONTACT ====== -->
+<!-- === CONTACT === -->
 <section id="contact">
   <h2 class="section-title">Contact Us</h2>
   <form>
@@ -248,9 +267,9 @@ footer {
   </form>
 </section>
 
-<!-- ====== FOOTER ====== -->
+<!-- === FOOTER === -->
 <footer>
-  <p>&copy; 2025 Department of Mechanical Engineering, All Rights Reserved.</p>
+  <p>⚙️ DRESTEIN'25 | Department of Mechanical Engineering ⚙️<br>All Rights Reserved © 2025</p>
 </footer>
 
 </body>
