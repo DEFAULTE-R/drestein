@@ -298,7 +298,6 @@
             .nav-links { display: none; } /* Simplified for mobile, burger menu recommended with JS */
             .hero h1 { font-size: 2.8rem; }
             .hero h2 { font-size: 1.2rem; }
-            #countdown { flex-wrap: wrap; }
             .about-container { flex-direction: column; }
             .section-title { font-size: 2.2rem; }
         }
@@ -492,6 +491,13 @@
             const hour = minute * 60;
             const day = hour * 24;
 
+            if (gap < 0) {
+                // Stop the timer and show a message if the date has passed
+                clearInterval(timerInterval);
+                document.getElementById('countdown').innerHTML = "<h3 style='color: var(--primary-blue); font-size: 1.5rem;'>The Event Is Live!</h3>";
+                return;
+            }
+
             const textDay = Math.floor(gap / day);
             const textHour = Math.floor((gap % day) / hour);
             const textMinute = Math.floor((gap % hour) / minute);
@@ -502,7 +508,8 @@
             document.getElementById('minutes').innerText = String(textMinute).padStart(2, '0');
             document.getElementById('seconds').innerText = String(textSecond).padStart(2, '0');
         };
-        setInterval(countdown, 1000);
+        const timerInterval = setInterval(countdown, 1000);
+        countdown(); // Initial call to display immediately
 
         // --- ACTIVE NAV LINK ON SCROLL SCRIPT ---
         const sections = document.querySelectorAll('section');
@@ -512,8 +519,7 @@
             let current = '';
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
+                if (pageYOffset >= (sectionTop - 75)) { // 75 is approx navbar height
                     current = section.getAttribute('id');
                 }
             });
