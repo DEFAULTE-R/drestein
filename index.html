@@ -15,18 +15,14 @@
             --border-color: rgba(0, 191, 255, 0.3);
             --font-main: 'Segoe UI', 'Roboto', system-ui, sans-serif;
         }
-
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
         html { scroll-behavior: smooth; }
-
         body {
             font-family: var(--font-main);
             background-color: var(--dark-charcoal);
             color: var(--light-gray-text);
             overflow-x: hidden;
         }
-
         /* --- PRELOADER --- */
         .preloader {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -40,7 +36,6 @@
             animation: spin 1s linear infinite;
         }
         @keyframes spin { to { transform: rotate(360deg); } }
-
         /* --- HEADER & NAVIGATION --- */
         .navbar {
             position: fixed; top: 0; width: 100%; padding: 1rem 5%;
@@ -59,7 +54,6 @@
             color: var(--primary-blue); text-shadow: 0 0 15px var(--primary-blue-glow);
             border-bottom-color: var(--primary-blue);
         }
-
         /* --- HERO SECTION --- */
         .hero {
             height: 100vh; display: flex; flex-direction: column; justify-content: center;
@@ -94,7 +88,6 @@
         }
         .countdown-item span { display: block; font-size: 2.5rem; font-weight: 700; color: #fff; }
         .countdown-item p { font-size: 0.9rem; text-transform: uppercase; color: var(--light-gray-text); letter-spacing: 1px; }
-
         .cta-button {
             padding: 1rem 3rem; font-size: 1.1rem; background: var(--primary-blue);
             color: var(--dark-charcoal); border: none; border-radius: 50px; cursor: pointer;
@@ -104,7 +97,6 @@
         .cta-button:hover {
             transform: translateY(-5px) scale(1.05); box-shadow: 0 0 40px var(--primary-blue);
         }
-
         /* --- GENERAL SECTION STYLING --- */
         .section {
             padding: 6rem 5%; border-top: 1px solid var(--border-color);
@@ -116,7 +108,6 @@
             margin-bottom: 3rem; color: #fff; text-transform: uppercase;
         }
         .section-title span { color: var(--primary-blue); }
-
         /* --- ABOUT SECTION --- */
         .about-container {
             display: flex; gap: 3rem; align-items: center; max-width: 1200px;
@@ -125,7 +116,6 @@
         .about-text { flex: 1; font-size: 1.2rem; line-height: 1.8; }
         .about-text p { margin-bottom: 1rem; }
         .about-text strong { color: var(--primary-blue); }
-
         /* --- EVENTS SECTION (INTERACTIVE FLIP CARDS) --- */
         .events-grid {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -155,7 +145,6 @@
         .card-back ul { list-style: none; margin-bottom: 2rem; }
         .card-back li { margin-bottom: 0.5rem; font-weight: 500; }
         .card-back li span { color: var(--primary-blue); margin-right: 0.5rem; }
-
         /* --- CONTACT SECTION --- */
         .contact-form { max-width: 800px; margin: 0 auto; }
         .form-group { margin-bottom: 1.5rem; }
@@ -169,13 +158,11 @@
             outline: none; border-color: var(--primary-blue);
         }
         .form-group textarea { min-height: 150px; resize: vertical; }
-
         /* --- FOOTER --- */
         footer {
             text-align: center; padding: 2rem; background-color: var(--dark-charcoal);
             border-top: 2px solid var(--border-color);
         }
-        
         /* --- NEW: SLIDING NOTIFICATION --- */
         .sliding-notification {
             position: fixed;
@@ -204,18 +191,15 @@
             color: var(--primary-blue);
             animation: glitch-anim 2s infinite;
         }
-
         @keyframes slideIn {
             to { transform: translateX(0); }
         }
-
         @keyframes glitch-anim {
             0%, 100% { text-shadow: none; }
             25% { text-shadow: 2px 2px 0 red, -2px -2px 0 var(--primary-blue); }
             50% { text-shadow: -2px 2px 0 red, 2px -2px 0 var(--primary-blue); }
             75% { text-shadow: 2px -2px 0 red, -2px 2px 0 var(--primary-blue); }
         }
-
         /* --- RESPONSIVE DESIGN --- */
         @media (max-width: 768px) {
             .nav-links { display: none; }
@@ -227,15 +211,12 @@
     </style>
 </head>
 <body>
-
     <div class="preloader">
         <div class="loader-gear"></div>
     </div>
-
     <a href="#contact" class="sliding-notification">
         Registration is live now. <span class="glitch">Click Here!</span>
     </a>
-
     <header class="navbar">
         <div class="logo">DRESTEIN MECH'25</div>
         <ul class="nav-links">
@@ -245,7 +226,6 @@
             <li><a href="#contact" class="nav-item">Register</a></li>
         </ul>
     </header>
-
     <main>
         <section id="home" class="hero">
             <svg class="hero-schematic" viewBox="0 0 100 100" preserveAspectRatio="none">
@@ -263,7 +243,6 @@
                 <a href="#contact" class="cta-button">Register Now</a>
             </div>
         </section>
-
         <section id="about" class="section">
             <h2 class="section-title">Where <span>Precision</span> Meets <span>Power</span></h2>
             <div class="about-container">
@@ -273,22 +252,21 @@
                 </div>
             </div>
         </section>
-
         <section id="events" class="section">
             <h2 class="section-title">The <span>Gauntlet</span></h2>
             <div class="events-grid">
                 <div class="event-card-container">
                     <div class="event-card">
                         <div class="card-face card-front">
-                            <div class="icon">🤖</div>
-                            <h3>Robotics & Automation</h3>
+                            <div class="icon">⚙️</div>
+                            <h3>Workshop: 3DEXPERIENCE CATIA</h3>
                         </div>
                         <div class="card-face card-back">
-                            <h3>Robotics Challenge</h3>
-                            <p>Design, build, and program a robot to navigate a complex obstacle course and perform specific tasks against the clock.</p>
+                            <h3>3DEXPERIENCE CATIA</h3>
+                            <p>A two-day intensive workshop on the next-gen platform. Master advanced part design, assembly, and simulation.</p>
                             <ul>
-                                <li><span>🏆</span>Prize: ₹ 50,000</li>
-                                <li><span>👥</span>Team: 2-4 Members</li>
+                                <li><span>🗓️</span>Duration: 2 Days</li>
+                                <li><span>🎓</span>Certificate upon completion</li>
                             </ul>
                             <a href="#contact" class="cta-button" style="padding: 0.8rem 2rem;">Register</a>
                         </div>
@@ -297,15 +275,15 @@
                 <div class="event-card-container">
                     <div class="event-card">
                         <div class="card-face card-front">
-                            <div class="icon">🏎️</div>
-                            <h3>Automotive Design</h3>
+                            <div class="icon">🛠️</div>
+                            <h3>Workshop: Fusion 360</h3>
                         </div>
                         <div class="card-face card-back">
-                            <h3>CAD Masters</h3>
-                            <p>A high-pressure design challenge where participants model a complex automotive assembly in CATIA/SolidWorks within a strict time limit.</p>
-                             <ul>
-                                <li><span>🏆</span>Prize: ₹ 40,000</li>
-                                <li><span>👥</span>Team: Individual</li>
+                            <h3>Fusion 360 Workshop</h3>
+                            <p>Explore integrated CAD, CAM, & CAE in this comprehensive two-day workshop. Go from concept to manufacturing.</p>
+                            <ul>
+                                <li><span>🗓️</span>Duration: 2 Days</li>
+                                <li><span>🎓</span>Certificate upon completion</li>
                             </ul>
                             <a href="#contact" class="cta-button" style="padding: 0.8rem 2rem;">Register</a>
                         </div>
@@ -315,10 +293,10 @@
                     <div class="event-card">
                         <div class="card-face card-front">
                             <div class="icon">💡</div>
-                            <h3>Ideation Challenge</h3>
+                            <h3>Pitch-a-thon</h3>
                         </div>
                         <div class="card-face card-back">
-                            <h3>Pitchathon</h3>
+                            <h3>Pitch-a-thon</h3>
                             <p>Develop and present an innovative engineering solution to a real-world problem. Judged on creativity, feasibility, and presentation.</p>
                              <ul>
                                 <li><span>🏆</span>Prize: ₹ 35,000</li>
@@ -328,9 +306,76 @@
                         </div>
                     </div>
                 </div>
+                <div class="event-card-container">
+                    <div class="event-card">
+                        <div class="card-face card-front">
+                            <div class="icon">🔥</div>
+                            <h3>Free Fire Tournament</h3>
+                        </div>
+                        <div class="card-face card-back">
+                            <h3>Free Fire Tournament</h3>
+                            <p>Drop into the battleground and fight for survival in this fast-paced mobile battle royale. Squad up and aim for the Booyah!</p>
+                            <ul>
+                                <li><span>🏆</span>Prize Pool: ₹ 10,000</li>
+                                <li><span>👥</span>Team: Squad (4 Members)</li>
+                            </ul>
+                            <a href="#contact" class="cta-button" style="padding: 0.8rem 2rem;">Register</a>
+                        </div>
+                    </div>
+                </div>
+                 <div class="event-card-container">
+                    <div class="event-card">
+                        <div class="card-face card-front">
+                            <div class="icon">🍗</div>
+                            <h3>BGMI Tournament</h3>
+                        </div>
+                        <div class="card-face card-back">
+                            <h3>BGMI Tournament</h3>
+                            <p>Prove your squad's skill in the Battlegrounds Mobile India tournament and get that coveted chicken dinner.</p>
+                            <ul>
+                                <li><span>🏆</span>Prize Pool: ₹ 15,000</li>
+                                <li><span>👥</span>Team: Squad (4 Members)</li>
+                            </ul>
+                            <a href="#contact" class="cta-button" style="padding: 0.8rem 2rem;">Register</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="event-card-container">
+                    <div class="event-card">
+                        <div class="card-face card-front">
+                            <div class="icon">⚔️</div>
+                            <h3>Clash of Clans</h3>
+                        </div>
+                        <div class="card-face card-back">
+                            <h3>Clash of Clans Tournament</h3>
+                            <p>Assemble your clan and lead them to victory! A strategic tournament based on war stars and destruction percentage.</p>
+                            <ul>
+                                <li><span>🏆</span>Prize Pool: ₹ 10,000</li>
+                                <li><span>👥</span>Team: Clan-based</li>
+                            </ul>
+                            <a href="#contact" class="cta-button" style="padding: 0.8rem 2rem;">Register</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="event-card-container">
+                    <div class="event-card">
+                        <div class="card-face card-front">
+                            <div class="icon">🍾</div>
+                            <h3>Battle of Bottles</h3>
+                        </div>
+                        <div class="card-face card-back">
+                            <h3>Battle of Bottles</h3>
+                            <p>A fun, high-energy non-technical event testing your precision and luck. More details will be revealed on the spot!</p>
+                            <ul>
+                                <li><span>🏆</span>Prize: Exciting Goodies</li>
+                                <li><span>👥</span>Team: Individual</li>
+                            </ul>
+                            <a href="#contact" class="cta-button" style="padding: 0.8rem 2rem;">Register</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
-
         <section id="contact" class="section">
             <h2 class="section-title">Claim Your <span>Spot</span></h2>
             <form class="contact-form">
@@ -354,37 +399,30 @@
             </form>
         </section>
     </main>
-
     <footer>
         <p>&copy; 2025 Department of Mechanical Engineering. All Rights Reserved.</p>
     </footer>
-
     <script>
         // --- PRELOADER SCRIPT ---
         window.addEventListener('load', () => {
             const preloader = document.querySelector('.preloader');
             preloader.classList.add('hidden');
         });
-
         // --- COUNTDOWN TIMER SCRIPT ---
         const countdown = () => {
             const countDate = new Date("November 5, 2025 09:00:00").getTime();
             const now = new Date().getTime();
             const gap = countDate - now;
-
             const second = 1000, minute = second * 60, hour = minute * 60, day = hour * 24;
-
             if (gap < 0) {
                 clearInterval(timerInterval);
                 document.getElementById('countdown').innerHTML = "<h3 style='color: var(--primary-blue); font-size: 1.5rem;'>The Event Is Live!</h3>";
                 return;
             }
-
             const textDay = Math.floor(gap / day);
             const textHour = Math.floor((gap % day) / hour);
             const textMinute = Math.floor((gap % hour) / minute);
             const textSecond = Math.floor((gap % minute) / second);
-
             document.getElementById('days').innerText = String(textDay).padStart(2, '0');
             document.getElementById('hours').innerText = String(textHour).padStart(2, '0');
             document.getElementById('minutes').innerText = String(textMinute).padStart(2, '0');
@@ -392,11 +430,9 @@
         };
         const timerInterval = setInterval(countdown, 1000);
         countdown();
-
         // --- ACTIVE NAV LINK ON SCROLL SCRIPT ---
         const sections = document.querySelectorAll('section');
         const navLi = document.querySelectorAll('.nav-links a.nav-item');
-
         window.addEventListener('scroll', () => {
             let current = 'home'; // Default to home
             sections.forEach(section => {
@@ -405,7 +441,6 @@
                     current = section.getAttribute('id');
                 }
             });
-
             navLi.forEach(a => {
                 a.classList.remove('active');
                 if (a.getAttribute('href').includes(current)) {
